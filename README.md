@@ -9,3 +9,8 @@ O projeto **Comex** é um sistema de _e-commerce marketplace_. Seu objetivo é p
 - Jupyter;
 - NumPy;
 - Pandas;
+
+## Autor
+
+- Vitor Capdeville
+- vgcapdeville@hotmail.com
