@@ -1,5 +1,5 @@
 class Segurado:
-    def __init__(self, primeiro_nome, sobrenome, data_nascimento, cpf, rg, endereco, contato, beneficiarios):
+    def __init__(self, primeiro_nome, sobrenome, data_nascimento, cpf, rg, endereco, contato, beneficiarios, apolices):
         self.primeiro_nome = primeiro_nome
         self.sobrenome = sobrenome
         self.data_nascimento = data_nascimento
@@ -8,3 +8,4 @@ class Segurado:
         self.endereco = endereco
         self.contato = contato
         self.beneficiarios = beneficiarios
+        self.apolices = apolices
