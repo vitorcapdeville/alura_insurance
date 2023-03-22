@@ -11,3 +11,7 @@ class Corretor:
         self._numero_susep = numero_susep
         self._apolices = apolices
         self._contato = contato
+
+    @property
+    def comissao_total(self):
+        return sum([apolice.comissao for apolice in self._apolices])
