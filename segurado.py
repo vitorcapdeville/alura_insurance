@@ -19,3 +19,7 @@ class Segurado:
     @property
     def nome_segurado(self):
         return self._pessoa.nome_completo
+    
+    @property
+    def beneficio_total(self):
+        return sum([apolice.valor_beneficio for apolice in self._apolices])

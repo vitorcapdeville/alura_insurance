@@ -9,3 +9,7 @@ class Apolice:
         self._data_inicio_vigencia = data_inicio_vigencia
         self._data_fim_vigencia = data_fim_vigencia
         self._status = status
+
+    @property
+    def valor_beneficio(self):
+        return self._valor_beneficio
