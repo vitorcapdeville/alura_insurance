@@ -1,11 +1,21 @@
+from typing import List
+
+from apolice import Apolice
+from beneficiario import Beneficiario
+from contato import Contato
+from endereco import Endereco
+from pessoa import Pessoa
+
+
 class Segurado:
-    def __init__(self, primeiro_nome, sobrenome, data_nascimento, cpf, rg, endereco, contato, beneficiarios, apolices):
-        self._primeiro_nome = primeiro_nome
-        self._sobrenome = sobrenome
-        self._data_nascimento = data_nascimento
-        self._cpf = cpf
-        self._rg = rg
+    def __init__(self, pessoa: Pessoa, endereco: Endereco, contato: Contato, beneficiarios: List[Beneficiario],
+                 apolices: List[Apolice]):
+        self._pessoa = pessoa
         self._endereco = endereco
         self._contato = contato
         self._beneficiarios = beneficiarios
         self._apolices = apolices
+
+    @property
+    def nome_segurado(self):
+        return self._pessoa.nome_completo
