@@ -1,8 +1,8 @@
 class Endereco:
     def __init__(self, rua, numero, complemento, cep, estado, cidade):
-        self.rua = rua
-        self.numero = numero
-        self.complemento = complemento
-        self.cep = cep
-        self.estado = estado
-        self.cidade = cidade
+        self._rua = rua
+        self._numero = numero
+        self._complemento = complemento
+        self._cep = cep
+        self._estado = estado
+        self._cidade = cidade
