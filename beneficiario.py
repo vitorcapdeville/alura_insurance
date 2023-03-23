@@ -12,7 +12,13 @@ class TipoBeneficiario(Enum):
 
 
 class Beneficiario:
-    def __init__(self, pessoa: Pessoa, tipo: TipoBeneficiario, endereco: Endereco, contato: Contato):
+    def __init__(
+        self,
+        pessoa: Pessoa,
+        tipo: TipoBeneficiario,
+        endereco: Endereco,
+        contato: Contato,
+    ):
         self._pessoa = pessoa
         self._tipo = tipo
         self._endereco = endereco

@@ -8,8 +8,14 @@ from pessoa import Pessoa
 
 
 class Segurado:
-    def __init__(self, pessoa: Pessoa, endereco: Endereco, contato: Contato, beneficiarios: List[Beneficiario],
-                 apolices: List[Apolice]):
+    def __init__(
+        self,
+        pessoa: Pessoa,
+        endereco: Endereco,
+        contato: Contato,
+        beneficiarios: List[Beneficiario],
+        apolices: List[Apolice],
+    ):
         self._pessoa = pessoa
         self._endereco = endereco
         self._contato = contato
@@ -18,6 +24,6 @@ class Segurado:
 
     def nome_segurado(self):
         return self._pessoa.nome_completo()
-    
+
     def beneficio_total(self):
         return sum([apolice.valor_beneficio for apolice in self._apolices])

@@ -1,5 +1,7 @@
 class Pessoa:
-    def __init__(self, primeiro_nome, sobrenome, data_nascimento=None, cpf=None, rg=None):
+    def __init__(
+        self, primeiro_nome, sobrenome, data_nascimento=None, cpf=None, rg=None
+    ):
         self._primeiro_nome = primeiro_nome
         self._sobrenome = sobrenome
         self._data_nascimento = data_nascimento
