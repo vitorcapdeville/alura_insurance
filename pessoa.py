@@ -6,6 +6,5 @@ class Pessoa:
         self._cpf = cpf
         self._rg = rg
 
-    @property
     def nome_completo(self):
         return f"{self._primeiro_nome} {self._sobrenome}"

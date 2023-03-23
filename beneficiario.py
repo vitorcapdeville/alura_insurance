@@ -6,14 +6,18 @@ from pessoa import Pessoa
 
 
 class TipoBeneficiario(Enum):
-    PARENTE = 'PARENTE'
-    AMIGO = 'AMIGO'
-    OUTROS = 'OUTROS'
+    PARENTE = 1
+    AMIGO = 2
+    OUTROS = 3
 
 
 class Beneficiario:
-    def __init__(self, pessoa: Pessoa, tipo: str, endereco: Endereco, contato: Contato):
+    def __init__(self, pessoa: Pessoa, tipo: TipoBeneficiario, endereco: Endereco, contato: Contato):
         self._pessoa = pessoa
-        self._tipo = TipoBeneficiario(tipo)
+        self._tipo = tipo
         self._endereco = endereco
         self._contato = contato
+
+    @property
+    def tipo(self):
+        return self._tipo
