@@ -21,5 +21,10 @@ class Pessoa:
         self._endereco = endereco
         self._contato = contato
 
+    def __str__(self):
+        return (
+            f"nome_completo: {self.nome_completo()}, classe: {self.__class__.__name__}"
+        )
+
     def nome_completo(self):
         return f"{self._primeiro_nome} {self._sobrenome}"

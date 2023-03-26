@@ -23,5 +23,8 @@ class Corretor(Pessoa):
         self._numero_susep = numero_susep
         self._apolices = apolices
 
+    def __str__(self):
+        return super().__str__() + f", comissao_total: {self.comissao_total():,.2f}"
+
     def comissao_total(self):
         return sum([apolice.comissao() for apolice in self._apolices])

@@ -26,5 +26,8 @@ class Segurado(Pessoa):
         self._beneficiarios = beneficiarios
         self._apolices = apolices
 
+    def __str__(self):
+        return super().__str__() + f", beneficio_total: {self.beneficio_total():,.2f}"
+
     def beneficio_total(self):
         return sum([apolice.valor_beneficio for apolice in self._apolices])

@@ -28,6 +28,9 @@ class Beneficiario(Pessoa):
         )
         self._tipo = tipo
 
+    def __str__(self):
+        return super().__str__() + f", tipo: {self._tipo}"
+
     @property
     def tipo(self):
         return self._tipo

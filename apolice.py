@@ -33,6 +33,13 @@ class Apolice:
         self._data_fim_vigencia = data_fim_vigencia
         self._status = status
 
+    def __str__(self):
+        return (
+            f"numero: {self._numero}, tipo: {self._tipo}, status: {self._status}, "
+            f"inicio: {self._data_inicio_vigencia}, fim: {self._data_fim_vigencia}, "
+            f"valor_beneficio: {self._valor_beneficio:,.2f}, comissao: {self.comissao():,.2f}"
+        )
+
     @property
     def valor_beneficio(self):
         return self._valor_beneficio
