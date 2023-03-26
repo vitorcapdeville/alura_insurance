@@ -5,14 +5,23 @@ from contato import Contato
 from pessoa import Pessoa
 
 
-class Corretor:
+class Corretor(Pessoa):
     def __init__(
-        self, pessoa: Pessoa, numero_susep, apolices: List[Apolice], contato: Contato
+        self,
+        primeiro_nome,
+        sobrenome,
+        data_nascimento,
+        cpf,
+        rg,
+        contato: Contato,
+        numero_susep,
+        apolices: List[Apolice],
     ):
-        self._pessoa = pessoa
+        super().__init__(
+            primeiro_nome, sobrenome, data_nascimento, cpf, rg, None, contato
+        )
         self._numero_susep = numero_susep
         self._apolices = apolices
-        self._contato = contato
 
     def comissao_total(self):
         return sum([apolice.comissao() for apolice in self._apolices])

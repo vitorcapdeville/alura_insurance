@@ -11,18 +11,22 @@ class TipoBeneficiario(Enum):
     OUTROS = 3
 
 
-class Beneficiario:
+class Beneficiario(Pessoa):
     def __init__(
         self,
-        pessoa: Pessoa,
-        tipo: TipoBeneficiario,
+        primeiro_nome,
+        sobrenome,
+        data_nascimento,
+        cpf,
+        rg,
         endereco: Endereco,
         contato: Contato,
+        tipo: TipoBeneficiario,
     ):
-        self._pessoa = pessoa
+        super().__init__(
+            primeiro_nome, sobrenome, data_nascimento, cpf, rg, endereco, contato
+        )
         self._tipo = tipo
-        self._endereco = endereco
-        self._contato = contato
 
     @property
     def tipo(self):
