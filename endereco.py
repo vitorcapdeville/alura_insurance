@@ -12,4 +12,3 @@ class Endereco:
             f"{self._rua}, numero {self._numero}, {self._complemento}, "
             f"{self._cidade}, {self._estado}"
         )
-

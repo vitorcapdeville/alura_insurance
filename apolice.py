@@ -1,3 +1,4 @@
+from datetime import date
 from enum import Enum
 
 
@@ -18,20 +19,18 @@ class StatusApolice(Enum):
 class Apolice:
     def __init__(
         self,
-        numero,
+        numero: int,
         tipo: TipoApolice,
-        valor_beneficio,
-        segurado,
-        corretor,
-        data_inicio_vigencia,
-        data_fim_vigencia,
+        valor_beneficio: float,
+        data_inicio_vigencia: date,
+        data_fim_vigencia: date,
         status: StatusApolice,
     ):
         self._numero = numero
         self._tipo = tipo
         self._valor_beneficio = valor_beneficio
-        self._segurado = segurado
-        self._corretor = corretor
+        self._segurado = None
+        self._corretor = None
         self._data_inicio_vigencia = data_inicio_vigencia
         self._data_fim_vigencia = data_fim_vigencia
         self._status = status
@@ -39,7 +38,8 @@ class Apolice:
     def __str__(self):
         return (
             f"numero: {self._numero}, tipo: {self._tipo}, status: {self._status}, "
-            f"inicio: {self._data_inicio_vigencia}, fim: {self._data_fim_vigencia}, "
+            f"inicio: {self._data_inicio_vigencia.strftime('%d/%m/%Y')}, "
+            f"fim: {self._data_fim_vigencia.strftime('%d/%m/%Y')}, "
             f"valor_beneficio: {self._valor_beneficio:,.2f}, comissao: {self.comissao():,.2f}"
         )
 

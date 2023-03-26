@@ -3,16 +3,17 @@ from typing import List
 from apolice import Apolice
 from contato import Contato
 from pessoa import Pessoa
+from datetime import date
 
 
 class Corretor(Pessoa):
     def __init__(
         self,
-        primeiro_nome,
-        sobrenome,
-        data_nascimento,
-        cpf,
-        rg,
+        primeiro_nome: str,
+        sobrenome: str,
+        data_nascimento: date,
+        cpf: str,
+        rg: str,
         contato: Contato,
         numero_susep,
         apolices: List[Apolice],

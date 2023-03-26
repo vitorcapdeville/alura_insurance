@@ -1,15 +1,16 @@
 from contato import Contato
 from endereco import Endereco
+from datetime import date
 
 
 class Pessoa:
     def __init__(
         self,
-        primeiro_nome,
-        sobrenome,
-        data_nascimento,
-        cpf,
-        rg,
+        primeiro_nome: str,
+        sobrenome: str,
+        data_nascimento: date,
+        cpf: str,
+        rg: str,
         endereco: Endereco,
         contato: Contato,
     ):
@@ -23,7 +24,8 @@ class Pessoa:
 
     def __str__(self):
         return (
-            f"nome_completo: {self.nome_completo()}, classe: {self.__class__.__name__}"
+            f"nome_completo: {self.nome_completo()}, data_nascimento:"
+            f" {self._data_nascimento.strftime('%d/%m/%Y')}, classe: {self.__class__.__name__}"
         )
 
     def nome_completo(self):
