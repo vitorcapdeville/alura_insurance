@@ -25,5 +25,5 @@ class Segurado:
     def nome_segurado(self):
         return self._pessoa.nome_completo()
 
-    def beneficio_total(self):
-        return sum([apolice.valor_beneficio for apolice in self._apolices])
+    def premio_total(self):
+        return sum([apolice.valor_premio for apolice in self._apolices])
