@@ -20,7 +20,7 @@ class Segurado(Pessoa):
         contato: Contato,
         beneficiarios: List[Beneficiario],
         apolices: List[Apolice],
-    ) -> object:
+    ) -> None:
         super().__init__(
             primeiro_nome, sobrenome, data_nascimento, cpf, rg, endereco, contato
         )

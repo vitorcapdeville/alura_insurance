@@ -1,6 +1,7 @@
 from typing import List
 
 from apolice import Apolice
+from calculadora_comissao import calcula_comissao
 from contato import Contato
 from pessoa import Pessoa
 from datetime import date
@@ -28,4 +29,4 @@ class Corretor(Pessoa):
         return super().__str__() + f", comissao_total: {self.comissao_total():,.2f}"
 
     def comissao_total(self):
-        return sum([apolice.comissao() for apolice in self._apolices])
+        return calcula_comissao(self._apolices)

@@ -23,7 +23,7 @@ class Beneficiario(Pessoa):
         endereco: Endereco,
         contato: Contato,
         tipo: TipoBeneficiario,
-    ) -> object:
+    ) -> None:
         super().__init__(
             primeiro_nome, sobrenome, data_nascimento, cpf, rg, endereco, contato
         )

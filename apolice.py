@@ -44,8 +44,9 @@ class Apolice:
         )
 
     @property
+    def tipo(self):
+        return self._tipo
+
+    @property
     def valor_beneficio(self):
         return self._valor_beneficio
-
-    def comissao(self):
-        return 0.1 * self._valor_beneficio
