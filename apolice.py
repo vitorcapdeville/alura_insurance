@@ -39,12 +39,3 @@ class Apolice:
 
     def comissao(self):
         return 0.1 * self._valor_premio
-
-apolice1 = Apolice(123, "Vida", 1000, "Diego", "Paloma", "01/01/2023", "31/12/2023", "VIDA")
-apolice2 = Apolice(456, "Vida", 5000, "Diego", "Paloma", "01/01/2023", "31/12/2023", "VIDA")
-apolice1._status
-apolice2._status
-
-# from segurado import Segurado
-# segurado1 = Segurado("Diego", "abc", "123", "xyz", [apolice1, apolice2])
-# segurado1.premio_total()
