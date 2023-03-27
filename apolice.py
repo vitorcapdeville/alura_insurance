@@ -17,7 +17,7 @@ class Apolice:
         self,
         numero,
         tipo: TipoApolice,
-        valor_beneficio,
+        valor_premio,
         segurado,
         corretor,
         data_inicio_vigencia,
@@ -26,7 +26,7 @@ class Apolice:
     ):
         self._numero = numero
         self._tipo = tipo
-        self._valor_beneficio = valor_beneficio
+        self._valor_premio = valor_premio
         self._segurado = segurado
         self._corretor = corretor
         self._data_inicio_vigencia = data_inicio_vigencia
@@ -34,8 +34,17 @@ class Apolice:
         self._status = status
 
     @property
-    def valor_beneficio(self):
-        return self._valor_beneficio
+    def valor_premio(self):
+        return self._valor_premio
 
     def comissao(self):
-        return 0.1 * self._valor_beneficio
+        return 0.1 * self._valor_premio
+
+apolice1 = Apolice(123, "Vida", 1000, "Diego", "Paloma", "01/01/2023", "31/12/2023", "VIDA")
+apolice2 = Apolice(456, "Vida", 5000, "Diego", "Paloma", "01/01/2023", "31/12/2023", "VIDA")
+apolice1._status
+apolice2._status
+
+# from segurado import Segurado
+# segurado1 = Segurado("Diego", "abc", "123", "xyz", [apolice1, apolice2])
+# segurado1.beneficio_total()
