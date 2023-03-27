@@ -47,4 +47,4 @@ apolice2._status
 
 # from segurado import Segurado
 # segurado1 = Segurado("Diego", "abc", "123", "xyz", [apolice1, apolice2])
-# segurado1.beneficio_total()
+# segurado1.premio_total()
