@@ -1,9 +1,9 @@
+from datetime import date
 from enum import Enum
 
 from contato import Contato
 from endereco import Endereco
 from pessoa import Pessoa
-from datetime import date
 
 
 class TipoBeneficiario(Enum):

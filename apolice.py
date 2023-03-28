@@ -40,7 +40,7 @@ class Apolice:
             f"numero: {self._numero}, tipo: {self._tipo}, status: {self._status}, "
             f"inicio: {self._data_inicio_vigencia.strftime('%d/%m/%Y')}, "
             f"fim: {self._data_fim_vigencia.strftime('%d/%m/%Y')}, "
-            f"valor_beneficio: {self._valor_beneficio:,.2f}, comissao: {self.comissao():,.2f}"
+            f"valor_beneficio: {self._valor_beneficio:,.2f}"
         )
 
     @property

@@ -1,3 +1,4 @@
+from datetime import date
 from typing import List
 
 from apolice import Apolice
@@ -5,7 +6,6 @@ from beneficiario import Beneficiario
 from contato import Contato
 from endereco import Endereco
 from pessoa import Pessoa
-from datetime import date
 
 
 class Segurado(Pessoa):
