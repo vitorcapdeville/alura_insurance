@@ -24,28 +24,15 @@ def _calcula_comissao_viagem(apolice: Apolice):
 class CalculadoraComissao:
     def __init__(self, apolices: List[Apolice]) -> None:
         self._apolices = apolices
-
-    def calcula_comissao(self):
-        total = 0
-        for apolice in self._apolices:
-            calculadora = {
-                TipoApolice.VIDA: _calcula_comissao_vida,
-                TipoApolice.CARRO: _calcula_comissao_carro,
-                TipoApolice.CASA: _calcula_comissao_casa,
-                TipoApolice.VIAGEM: _calcula_comissao_viagem,
-            }
-            total += calculadora[apolice.tipo](apolice)
-        return total
-
-
-def calcula_comissao(apolices: List[Apolice]):
-    total = 0
-    for apolice in apolices:
-        calculadora = {
+        self._regra = {
             TipoApolice.VIDA: _calcula_comissao_vida,
             TipoApolice.CARRO: _calcula_comissao_carro,
             TipoApolice.CASA: _calcula_comissao_casa,
             TipoApolice.VIAGEM: _calcula_comissao_viagem,
         }
-        total += calculadora[apolice.tipo](apolice)
-    return total
+
+    def calcula(self):
+        total = 0
+        for apolice in self._apolices:
+            total += self._regra[apolice.tipo](apolice)
+        return total
