@@ -5,10 +5,10 @@ from apolice import TipoApolice
 
 
 def _calcula_comissao_vida(apolice: Apolice):
+    resultado = 0.005 * apolice.valor_premio + 100
     if apolice.valor_premio > 850000:
-        return 0.005 * apolice.valor_premio + 100
-    else:
-        return 0.005 * apolice.valor_premio
+        return resultado + 1000
+    return resultado
 
 
 def _calcula_comissao_carro(apolice: Apolice):
