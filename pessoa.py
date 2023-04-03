@@ -25,7 +25,7 @@ class Pessoa:
         self._sobrenome = valida_nome(sobrenome, "sobrenome")
         self._data_nascimento = data_nascimento
         self._cpf = valida_cpf(cpf)
-        self._rg = valida_arg_nao_nulo(rg)
+        self._rg = valida_arg_nao_nulo(rg, "rg")
         self._endereco = endereco
         self._contato = contato
 

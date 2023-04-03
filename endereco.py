@@ -14,12 +14,12 @@ class Endereco:
         estado: str,
         cidade: str
     ) -> None:
-        self._rua: str = valida_arg_nao_nulo(rua.title())
-        self._numero: str = valida_arg_nao_nulo(numero)
+        self._rua: str = valida_arg_nao_nulo(rua.title(), "rua")
+        self._numero: str = valida_arg_nao_nulo(numero, "numero")
         self._complemento: Optional[str] = complemento
-        self._cep: str = valida_arg_nao_nulo(cep)
-        self._estado: str = valida_estado(estado.title())
-        self._cidade: str = valida_arg_nao_nulo(cidade.title())
+        self._cep: str = valida_arg_nao_nulo(cep, "cep")
+        self._estado: str = valida_estado(estado)
+        self._cidade: str = valida_arg_nao_nulo(cidade.title(), "cidade")
 
     def __str__(self) -> str:
         return (

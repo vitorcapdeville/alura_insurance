@@ -1,5 +1,6 @@
 from datetime import date
 from enum import Enum
+from uuid import uuid4
 
 
 class TipoApolice(Enum):
@@ -19,7 +20,6 @@ class StatusApolice(Enum):
 class Apolice:
     def __init__(
         self,
-        numero: int,
         tipo: TipoApolice,
         valor_beneficio: float,
         valor_premio: float,
@@ -27,7 +27,7 @@ class Apolice:
         data_fim_vigencia: date,
         status: StatusApolice,
     ):
-        self._numero = numero
+        self._numero = uuid4()
         self._tipo = tipo
         self._valor_beneficio = valor_beneficio
         self._valor_premio = valor_premio
@@ -56,3 +56,7 @@ class Apolice:
     @property
     def valor_premio(self):
         return self._valor_premio
+
+    @property
+    def valor_beneficio(self):
+        return self._valor_beneficio

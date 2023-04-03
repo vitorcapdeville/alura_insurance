@@ -8,7 +8,7 @@ class Contato:
     def __init__(
         self, celular: str, telefone_residencial: Optional[str], telefone_comercial: Optional[str], email: str
     ):
-        self._celular = valida_arg_nao_nulo(celular)
+        self._celular = valida_arg_nao_nulo(celular, "celular")
         self._telefone_residencial = telefone_residencial
         self._telefone_comercial = telefone_comercial
         self._email = valida_email(email)

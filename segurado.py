@@ -27,7 +27,7 @@ class Segurado(Pessoa):
             primeiro_nome, sobrenome, data_nascimento, cpf, rg, endereco, contato
         )
         self._beneficiarios = valida_beneficiarios(beneficiarios)
-        self._apolices = valida_arg_nao_nulo(apolices)
+        self._apolices = valida_arg_nao_nulo(apolices, "apolices")
         self._data_ingresso = min([apolice.data_inicio_vigencia for apolice in apolices])
         self.valida_maioridade()
 

@@ -42,7 +42,6 @@ class CriarApolice(CriarInstancia):
     @staticmethod
     def from_dict(data: dict):
         return Apolice(
-            data.get("numero"),
             TipoApolice(data.get("tipo")),
             data.get("valor_beneficio"),
             data.get("valor_premio"),

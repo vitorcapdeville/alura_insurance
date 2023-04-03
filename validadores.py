@@ -50,20 +50,16 @@ def valida_nome(nome, arg_name):
 
 def valida_arg_nao_nulo(arg, arg_name):
     if not arg:
-        raise ValueError(f"{arg_name} não pode ser uma vazio.")
+        raise ValueError(f"{arg_name} não pode ser vazio.")
     return arg
 
 
 # valida que estado possui uma sigla valida com base em ESTADOS
 def valida_estado(estado):
     valida_arg_nao_nulo(estado, "estado")
+    if len(estado) != 2:
+        raise ValueError("estado deve ser a sigla e não o nome do estado.")
     if estado not in ESTADOS:
-        raise ValueError("estado inválido.")
-    # se o tamanho do estado for maior que 2, buscar a sigla usando ESTADOS
-    if len(estado) > 2:
-        for sigla, nome in ESTADOS.items():
-            if nome == estado:
-                return sigla
         raise ValueError("estado inválido.")
     return estado
 
