@@ -1,9 +1,17 @@
+from typing import Optional
+
+from validadores import valida_arg_nao_nulo
+from validadores import valida_email
+
+
 class Contato:
-    def __init__(self, celular, telefone_residencial, telefone_comercial, email):
-        self._celular = celular
+    def __init__(
+        self, celular: str, telefone_residencial: Optional[str], telefone_comercial: Optional[str], email: str
+    ):
+        self._celular = valida_arg_nao_nulo(celular)
         self._telefone_residencial = telefone_residencial
         self._telefone_comercial = telefone_comercial
-        self._email = email
+        self._email = valida_email(email)
 
     def __str__(self):
         return (

@@ -5,6 +5,7 @@ from apolice import Apolice
 from calculadora_comissao import CalculadoraComissao
 from contato import Contato
 from pessoa import Pessoa
+from validadores import valida_numero_susep
 
 
 class Corretor(Pessoa):
@@ -27,7 +28,7 @@ class Corretor(Pessoa):
             None,
             contato,
         )
-        self._numero_susep = numero_susep
+        self._numero_susep = valida_numero_susep(numero_susep)
         self._apolices = apolices
 
     def __str__(self):

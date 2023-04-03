@@ -1,6 +1,13 @@
+from datetime import date
+from typing import Optional
+
+from dateutil.relativedelta import relativedelta
+
 from contato import Contato
 from endereco import Endereco
-from datetime import date
+from validadores import valida_arg_nao_nulo
+from validadores import valida_cpf
+from validadores import valida_nome
 
 
 class Pessoa:
@@ -11,14 +18,14 @@ class Pessoa:
         data_nascimento: date,
         cpf: str,
         rg: str,
-        endereco: Endereco,
-        contato: Contato,
+        endereco: Optional[Endereco],
+        contato: Optional[Contato]
     ):
-        self._primeiro_nome = primeiro_nome
-        self._sobrenome = sobrenome
+        self._primeiro_nome = valida_nome(primeiro_nome, "primeiro_nome")
+        self._sobrenome = valida_nome(sobrenome, "sobrenome")
         self._data_nascimento = data_nascimento
-        self._cpf = cpf
-        self._rg = rg
+        self._cpf = valida_cpf(cpf)
+        self._rg = valida_arg_nao_nulo(rg)
         self._endereco = endereco
         self._contato = contato
 
@@ -30,3 +37,6 @@ class Pessoa:
 
     def nome_completo(self):
         return f"{self._primeiro_nome} {self._sobrenome}"
+
+    def idade(self, data_calculo: date = date.today()):
+        return relativedelta(data_calculo, self._data_nascimento).years

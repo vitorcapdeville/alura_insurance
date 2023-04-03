@@ -1,20 +1,22 @@
-from apolice import Apolice, TipoApolice
 from typing import List
+
+from apolice import Apolice
+from apolice import TipoApolice
 
 
 def _calcula_comissao_vida(apolice: Apolice):
-    if apolice.valor_beneficio > 850000:
-        return 0.005 * apolice.valor_beneficio + 100
+    if apolice.valor_premio > 850000:
+        return 0.005 * apolice.valor_premio + 100
     else:
-        return 0.005 * apolice.valor_beneficio
+        return 0.005 * apolice.valor_premio
 
 
 def _calcula_comissao_carro(apolice: Apolice):
-    return 0.0035 * apolice.valor_beneficio + 75.5
+    return 0.0035 * apolice.valor_premio + 75.5
 
 
 def _calcula_comissao_casa(apolice: Apolice):
-    return 0.002 * apolice.valor_beneficio
+    return 0.002 * apolice.valor_premio
 
 
 def _calcula_comissao_viagem(apolice: Apolice):

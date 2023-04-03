@@ -45,6 +45,7 @@ class CriarApolice(CriarInstancia):
             data.get("numero"),
             TipoApolice(data.get("tipo")),
             data.get("valor_beneficio"),
+            data.get("valor_premio"),
             datetime.fromisoformat(data.get("data_inicio_vigencia")),
             datetime.fromisoformat(data.get("data_fim_vigencia")),
             StatusApolice(data.get("status")),
