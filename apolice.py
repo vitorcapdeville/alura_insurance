@@ -33,8 +33,8 @@ class Apolice:
     ):
         self._numero = numero
         self._tipo = tipo
-        self._valor_beneficio = valida_positivo(valor_beneficio)
-        self._valor_premio = valida_positivo(valor_premio)
+        self._valor_beneficio = valida_positivo(valor_beneficio, "valor_beneficio")
+        self._valor_premio = valida_positivo(valor_premio, "valor_premio")
         self._segurado = None
         self._corretor = None
         self._data_inicio_vigencia, self._data_fim_vigencia = valida_vigencia(data_inicio_vigencia, data_fim_vigencia)
