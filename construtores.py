@@ -1,5 +1,6 @@
 from datetime import datetime
 from json import load
+from uuid import UUID
 
 from apolice import Apolice
 from apolice import StatusApolice
@@ -10,6 +11,7 @@ from contato import Contato
 from corretor import Corretor
 from endereco import Endereco
 from segurado import Segurado
+from endereco import Estado
 
 
 def separa_nome_sobre(nome_completo: str):
@@ -27,6 +29,8 @@ def ler_json(file_path):
     return data
 
 
+# TODO: separar en 2 classes, uma q le o arquivo e retorna o dicionario
+#  e outra q le o dicionario e retorna a instancia (parser)
 class CriarInstancia:
     @classmethod
     def from_json(cls, file_path: str):
@@ -42,12 +46,13 @@ class CriarApolice(CriarInstancia):
     @staticmethod
     def from_dict(data: dict):
         return Apolice(
+            UUID('12345678123456781234567812345678'),
             TipoApolice(data.get("tipo")),
             data.get("valor_beneficio"),
             data.get("valor_premio"),
             datetime.fromisoformat(data.get("data_inicio_vigencia")),
             datetime.fromisoformat(data.get("data_fim_vigencia")),
-            StatusApolice(data.get("status")),
+            StatusApolice(data.get("status"))
         )
 
 
@@ -59,7 +64,7 @@ class CriarEndereco(CriarInstancia):
             data.get("numero"),
             data.get("complemento"),
             data.get("cep"),
-            data.get("estado"),
+            Estado(data.get("estado")),
             data.get("cidade"),
         )
 

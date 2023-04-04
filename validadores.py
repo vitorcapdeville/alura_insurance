@@ -3,35 +3,6 @@ from re import match
 CPF_FORMATO = "[0-9]{3}[.][0-9]{3}[.][0-9]{3}[-][0-9]{2}"
 EMAIL_FORMATO = "[^@]+@[^@]+[.][^@]+"
 NUMERO_SUSEP_FORMATO = "^154146[0-9]{11}"
-ESTADOS = {
-    'AC': 'Acre',
-    'AL': 'Alagoas',
-    'AP': 'Amapá',
-    'AM': 'Amazonas',
-    'BA': 'Bahia',
-    'CE': 'Ceará',
-    'DF': 'Distrito Federal',
-    'ES': 'Espírito Santo',
-    'GO': 'Goiás',
-    'MA': 'Maranhão',
-    'MT': 'Mato Grosso',
-    'MS': 'Mato Grosso do Sul',
-    'MG': 'Minas Gerais',
-    'PA': 'Pará',
-    'PB': 'Paraíba',
-    'PR': 'Paraná',
-    'PE': 'Pernambuco',
-    'PI': 'Piauí',
-    'RJ': 'Rio de Janeiro',
-    'RN': 'Rio Grande do Norte',
-    'RS': 'Rio Grande do Sul',
-    'RO': 'Rondônia',
-    'RR': 'Roraima',
-    'SC': 'Santa Catarina',
-    'SP': 'São Paulo',
-    'SE': 'Sergipe',
-    'TO': 'Tocantins'
-}
 
 
 def valida_cpf(cpf):
@@ -52,16 +23,6 @@ def valida_arg_nao_nulo(arg, arg_name):
     if not arg:
         raise ValueError(f"{arg_name} não pode ser vazio.")
     return arg
-
-
-# valida que estado possui uma sigla valida com base em ESTADOS
-def valida_estado(estado):
-    valida_arg_nao_nulo(estado, "estado")
-    if len(estado) != 2:
-        raise ValueError("estado deve ser a sigla e não o nome do estado.")
-    if estado not in ESTADOS:
-        raise ValueError("estado inválido.")
-    return estado
 
 
 def valida_beneficiarios(beneficiarios):
@@ -85,3 +46,18 @@ def valida_numero_susep(numero_susep):
     if not match(NUMERO_SUSEP_FORMATO, numero_susep):
         raise ValueError("numero_susep inválido.")
     return numero_susep
+
+
+def valida_positivo(valor, arg_name):
+    valida_arg_nao_nulo(valor, arg_name)
+    if valor <= 0:
+        raise ValueError(f"{arg_name} deve ser positivo.")
+    return valor
+
+
+def valida_vigencia(data_inicio, data_fim):
+    valida_arg_nao_nulo(data_inicio, "data_inicio")
+    valida_arg_nao_nulo(data_fim, "data_fim")
+    if data_inicio > data_fim:
+        raise ValueError("data_inicio deve ser anterior a data_fim.")
+    return data_inicio, data_fim

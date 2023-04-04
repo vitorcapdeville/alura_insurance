@@ -1,6 +1,9 @@
 from datetime import date
 from enum import Enum
-from uuid import uuid4
+from uuid import UUID
+
+from validadores import valida_positivo
+from validadores import valida_vigencia
 
 
 class TipoApolice(Enum):
@@ -20,6 +23,7 @@ class StatusApolice(Enum):
 class Apolice:
     def __init__(
         self,
+        numero: UUID,
         tipo: TipoApolice,
         valor_beneficio: float,
         valor_premio: float,
@@ -27,14 +31,13 @@ class Apolice:
         data_fim_vigencia: date,
         status: StatusApolice,
     ):
-        self._numero = uuid4()
+        self._numero = numero
         self._tipo = tipo
-        self._valor_beneficio = valor_beneficio
-        self._valor_premio = valor_premio
+        self._valor_beneficio = valida_positivo(valor_beneficio)
+        self._valor_premio = valida_positivo(valor_premio)
         self._segurado = None
         self._corretor = None
-        self._data_inicio_vigencia = data_inicio_vigencia
-        self._data_fim_vigencia = data_fim_vigencia
+        self._data_inicio_vigencia, self._data_fim_vigencia = valida_vigencia(data_inicio_vigencia, data_fim_vigencia)
         self._status = status
 
     def __str__(self):
