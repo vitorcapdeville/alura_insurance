@@ -1,12 +1,12 @@
 from datetime import date
 from typing import List
 
-from apolice import Apolice
-from beneficiario import Beneficiario
+from modelo.apolice import Apolice
+from modelo.beneficiario import Beneficiario
 from construtores import separa_nome_sobre
-from contato import Contato
-from endereco import Endereco
-from pessoa import Pessoa
+from modelo.contato import Contato
+from modelo.endereco import Endereco
+from modelo.pessoa import Pessoa
 from validadores import valida_arg_nao_nulo
 from validadores import valida_beneficiarios
 from validadores import valida_maioridade

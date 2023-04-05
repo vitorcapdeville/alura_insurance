@@ -1,7 +1,7 @@
 from typing import List
 
-from apolice import Apolice
-from apolice import TipoApolice
+from modelo.apolice import Apolice
+from modelo.apolice import TipoApolice
 
 
 def _calcula_comissao_vida(apolice: Apolice):

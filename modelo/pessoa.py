@@ -1,8 +1,8 @@
 from datetime import date
 from typing import Optional
 
-from contato import Contato
-from endereco import Endereco
+from modelo.contato import Contato
+from modelo.endereco import Endereco
 from validadores import valida_arg_nao_nulo
 from validadores import valida_cpf
 from validadores import valida_nome
@@ -26,6 +26,7 @@ class Pessoa:
         self._rg = rg
         self._endereco = endereco
         self._contato = contato
+        self._valida()
 
     def _pega_erros(self):
         erros = []

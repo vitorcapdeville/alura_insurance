@@ -2,9 +2,9 @@ from datetime import date
 from enum import Enum
 
 from construtores import separa_nome_sobre
-from contato import Contato
-from endereco import Endereco
-from pessoa import Pessoa
+from modelo.contato import Contato
+from modelo.endereco import Endereco
+from modelo.pessoa import Pessoa
 
 
 class TipoBeneficiario(Enum):

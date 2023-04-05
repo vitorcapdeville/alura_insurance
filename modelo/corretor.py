@@ -1,11 +1,11 @@
 from datetime import datetime
 from typing import List
 
-from apolice import Apolice
 from calculadora_comissao import CalculadoraComissao
 from construtores import separa_nome_sobre
-from contato import Contato
-from pessoa import Pessoa
+from modelo.apolice import Apolice
+from modelo.contato import Contato
+from modelo.pessoa import Pessoa
 from validadores import valida_numero_susep
 
 

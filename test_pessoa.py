@@ -1,6 +1,6 @@
 import pytest
 
-from pessoa import valida_cpf
+from modelo.pessoa import valida_cpf
 
 
 def test_valida_cpf():
