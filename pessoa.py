@@ -1,8 +1,6 @@
 from datetime import date
 from typing import Optional
 
-from dateutil.relativedelta import relativedelta
-
 from contato import Contato
 from endereco import Endereco
 from validadores import valida_arg_nao_nulo
@@ -37,6 +35,3 @@ class Pessoa:
 
     def nome_completo(self):
         return f"{self._primeiro_nome} {self._sobrenome}"
-
-    def idade(self, data_calculo: date = date.today()):
-        return relativedelta(data_calculo, self._data_nascimento).years

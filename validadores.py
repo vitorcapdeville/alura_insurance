@@ -1,8 +1,14 @@
 from re import match
 
+from dateutil.relativedelta import relativedelta
+
 CPF_FORMATO = "[0-9]{3}[.][0-9]{3}[.][0-9]{3}[-][0-9]{2}"
 EMAIL_FORMATO = "[^@]+@[^@]+[.][^@]+"
 NUMERO_SUSEP_FORMATO = "^154146[0-9]{11}"
+
+
+def calcula_idade_anos(data_nascimento, data_calculo):
+    return relativedelta(data_calculo, data_nascimento).years
 
 
 def valida_cpf(cpf):
@@ -61,3 +67,9 @@ def valida_vigencia(data_inicio, data_fim):
     if data_inicio > data_fim:
         raise ValueError("data_inicio deve ser anterior a data_fim.")
     return data_inicio, data_fim
+
+
+def valida_maioridade(data_nascimento, data_inicio):
+    if calcula_idade_anos(data_nascimento, data_inicio) <= 18:
+        raise ValueError("Segurado não pode ser menor de idade.")
+
