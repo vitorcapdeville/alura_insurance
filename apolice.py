@@ -40,6 +40,18 @@ class Apolice:
         self._data_inicio_vigencia, self._data_fim_vigencia = valida_vigencia(data_inicio_vigencia, data_fim_vigencia)
         self._status = status
 
+    @classmethod
+    def from_dict(cls, data):
+        return cls(
+            UUID(data.get("numero")),
+            TipoApolice(data.get("tipo")),
+            data.get("valor_beneficio"),
+            data.get("valor_premio"),
+            date.fromisoformat(data.get("data_inicio_vigencia")),
+            date.fromisoformat(data.get("data_fim_vigencia")),
+            StatusApolice(data.get("status")),
+        )
+
     def __str__(self):
         return (
             f"numero: {self._numero}, tipo: {self._tipo}, status: {self._status}, "

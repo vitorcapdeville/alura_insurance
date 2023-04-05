@@ -13,6 +13,15 @@ class Contato:
         self._telefone_comercial = telefone_comercial
         self._email = valida_email(email)
 
+    @classmethod
+    def from_dict(cls, data):
+        return cls(
+            data.get("celular"),
+            data.get("telefone_residencial"),
+            data.get("telefone_comercial"),
+            data.get("email"),
+        )
+
     def __str__(self):
         return (
             f"celular: {self._celular}, telefone_residencial: {self._telefone_residencial}, telefone_comercial: "

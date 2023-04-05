@@ -3,6 +3,7 @@ from typing import List
 
 from apolice import Apolice
 from calculadora_comissao import CalculadoraComissao
+from construtores import separa_nome_sobre
 from contato import Contato
 from pessoa import Pessoa
 from validadores import valida_numero_susep
@@ -30,6 +31,20 @@ class Corretor(Pessoa):
         )
         self._numero_susep = valida_numero_susep(numero_susep)
         self._apolices = apolices
+
+    @classmethod
+    def from_dict(cls, data: dict):
+        primeiro_nome, sobrenome = separa_nome_sobre(data.get("nome"))
+        contato = Contato.from_dict(data["contato"])
+        return cls(
+            primeiro_nome,
+            sobrenome,
+            data.get("cpf"),
+            data.get("rg"),
+            contato,
+            data.get("numero_susep"),
+            [Apolice.from_dict(apolice) for apolice in data.get("apolices")],
+        )
 
     def __str__(self):
         return super().__str__() + f", comissao_total: {self.comissao_total():,.2f}"

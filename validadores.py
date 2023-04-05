@@ -72,4 +72,3 @@ def valida_vigencia(data_inicio, data_fim):
 def valida_maioridade(data_nascimento, data_inicio):
     if calcula_idade_anos(data_nascimento, data_inicio) <= 18:
         raise ValueError("Segurado não pode ser menor de idade.")
-

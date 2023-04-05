@@ -51,6 +51,17 @@ class Endereco:
         self._estado: Estado = estado
         self._cidade: str = valida_arg_nao_nulo(cidade.title(), "cidade")
 
+    @classmethod
+    def from_dict(cls, data):
+        return cls(
+            data.get("rua"),
+            data.get("numero"),
+            data.get("complemento"),
+            data.get("cep"),
+            Estado(data.get("estado")),
+            data.get("cidade"),
+        )
+
     def __str__(self) -> str:
         return (
             f"{self._rua}, numero {self._numero}, {self._complemento}, "
