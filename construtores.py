@@ -18,7 +18,7 @@ def criar_classe(class_obj, arquivo):
     return class_obj.from_dict(data)
 
 
-def separa_nome_sobre(nome_completo: str):
+def separa_nome_sobrenome(nome_completo: str):
     nome_completo = nome_completo.strip()
     if " " in nome_completo:
         primeiro_nome, sobrenome = nome_completo.split(" ", 1)

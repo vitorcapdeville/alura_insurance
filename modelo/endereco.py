@@ -1,6 +1,7 @@
 from enum import Enum
 from typing import Optional
 
+from modelo.componente_seguro import ComponenteSeguro
 from validadores import valida_arg_nao_nulo
 
 
@@ -34,7 +35,7 @@ class Estado(Enum):
     TO = "TO"
 
 
-class Endereco:
+class Endereco(ComponenteSeguro):
     def __init__(
         self,
         rua: str,
@@ -59,11 +60,6 @@ class Endereco:
         erros += valida_arg_nao_nulo(self._cep, "cep")
         erros += valida_arg_nao_nulo(self._cidade, "cidade")
         return erros
-
-    def _valida(self):
-        erros = self._pega_erros()
-        if len(erros) > 0:
-            raise Exception(erros)
 
     @classmethod
     def from_dict(cls, data):

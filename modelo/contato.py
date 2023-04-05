@@ -1,10 +1,11 @@
 from typing import Optional
 
+from modelo.componente_seguro import ComponenteSeguro
 from validadores import valida_arg_nao_nulo
 from validadores import valida_email
 
 
-class Contato:
+class Contato(ComponenteSeguro):
     def __init__(
         self, celular: str, telefone_residencial: Optional[str], telefone_comercial: Optional[str], email: str
     ):
@@ -19,11 +20,6 @@ class Contato:
         erros += valida_arg_nao_nulo(self._celular, "celular")
         erros += valida_email(self._email)
         return erros
-
-    def _valida(self):
-        erros = self._pega_erros()
-        if len(erros) > 0:
-            raise Exception(erros)
 
     @classmethod
     def from_dict(cls, data):

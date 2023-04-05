@@ -1,7 +1,7 @@
 from datetime import date
 from enum import Enum
 
-from construtores import separa_nome_sobre
+from construtores import separa_nome_sobrenome
 from modelo.contato import Contato
 from modelo.endereco import Endereco
 from modelo.pessoa import Pessoa
@@ -32,7 +32,7 @@ class Beneficiario(Pessoa):
 
     @classmethod
     def from_dict(cls, data: dict):
-        primeiro_nome, sobrenome = separa_nome_sobre(data.get("nome"))
+        primeiro_nome, sobrenome = separa_nome_sobrenome(data.get("nome"))
         endereco = Endereco.from_dict(data["endereco"])
         contato = Contato.from_dict(data["contato"])
         return cls(

@@ -2,7 +2,7 @@ from datetime import datetime
 from typing import List
 
 from calculadora_comissao import CalculadoraComissao
-from construtores import separa_nome_sobre
+from construtores import separa_nome_sobrenome
 from modelo.apolice import Apolice
 from modelo.contato import Contato
 from modelo.pessoa import Pessoa
@@ -20,7 +20,7 @@ class Corretor(Pessoa):
         numero_susep,
         apolices: List[Apolice],
     ):
-        self._numero_susep = valida_numero_susep(numero_susep)
+        self._numero_susep = numero_susep
         self._apolices = apolices
         super().__init__(
             primeiro_nome,
@@ -39,7 +39,7 @@ class Corretor(Pessoa):
 
     @classmethod
     def from_dict(cls, data: dict):
-        primeiro_nome, sobrenome = separa_nome_sobre(data.get("nome"))
+        primeiro_nome, sobrenome = separa_nome_sobrenome(data.get("nome"))
         contato = Contato.from_dict(data["contato"])
         return cls(
             primeiro_nome,

@@ -2,6 +2,7 @@ from datetime import date
 from enum import Enum
 from uuid import UUID
 
+from modelo.componente_seguro import ComponenteSeguro
 from validadores import valida_positivo
 from validadores import valida_vigencia
 
@@ -20,7 +21,7 @@ class StatusApolice(Enum):
     EM_SINISTRO = 4
 
 
-class Apolice:
+class Apolice(ComponenteSeguro):
     def __init__(
         self,
         numero: UUID,
@@ -84,8 +85,3 @@ class Apolice:
         erros += valida_positivo(self._valor_premio, "valor_premio")
         erros += valida_vigencia(self._data_inicio_vigencia, self._data_fim_vigencia)
         return erros
-
-    def _valida(self):
-        erros = self._pega_erros()
-        if len(erros) > 0:
-            raise Exception(erros)
