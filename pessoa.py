@@ -19,13 +19,26 @@ class Pessoa:
         endereco: Optional[Endereco],
         contato: Optional[Contato]
     ):
-        self._primeiro_nome = valida_nome(primeiro_nome, "primeiro_nome")
-        self._sobrenome = valida_nome(sobrenome, "sobrenome")
+        self._primeiro_nome = primeiro_nome
+        self._sobrenome = sobrenome
         self._data_nascimento = data_nascimento
-        self._cpf = valida_cpf(cpf)
-        self._rg = valida_arg_nao_nulo(rg, "rg")
+        self._cpf = cpf
+        self._rg = rg
         self._endereco = endereco
         self._contato = contato
+
+    def _pega_erros(self):
+        erros = []
+        erros += valida_nome(self._primeiro_nome, "primeiro_nome")
+        erros += valida_nome(self._sobrenome, "sobrenome")
+        erros += valida_cpf(self._cpf)
+        erros += valida_arg_nao_nulo(self._rg, "rg")
+        return erros
+
+    def _valida(self):
+        erros = self._pega_erros()
+        if len(erros) > 0:
+            raise Exception(erros)
 
     def __str__(self):
         return (

@@ -25,13 +25,19 @@ class Segurado(Pessoa):
         beneficiarios: List[Beneficiario],
         apolices: List[Apolice],
     ) -> None:
+        self._beneficiarios = beneficiarios
+        self._apolices = apolices
+        self._data_ingresso = min([apolice.data_inicio_vigencia for apolice in apolices])
         super().__init__(
             primeiro_nome, sobrenome, data_nascimento, cpf, rg, endereco, contato
         )
-        self._beneficiarios = valida_beneficiarios(beneficiarios)
-        self._apolices = valida_arg_nao_nulo(apolices, "apolices")
-        self._data_ingresso = min([apolice.data_inicio_vigencia for apolice in apolices])
-        valida_maioridade(self._data_nascimento, self._data_ingresso)
+
+    def _pega_erros(self):
+        erros = super()._pega_erros()
+        erros += valida_beneficiarios(self._beneficiarios)
+        erros += valida_arg_nao_nulo(self._apolices, "apolices")
+        erros += valida_maioridade(self._data_nascimento, self._data_ingresso)
+        return erros
 
     @classmethod
     def from_dict(cls, data: dict):

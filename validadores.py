@@ -1,4 +1,5 @@
 from re import match
+from typing import List
 
 from dateutil.relativedelta import relativedelta
 
@@ -11,64 +12,75 @@ def calcula_idade_anos(data_nascimento, data_calculo):
     return relativedelta(data_calculo, data_nascimento).years
 
 
-def valida_cpf(cpf):
-    valida_arg_nao_nulo(cpf, "cpf")
+def valida_cpf(cpf: str) -> List[Exception]:
+    erros = []
+    erros += valida_arg_nao_nulo(cpf, "cpf")
     if not match(CPF_FORMATO, cpf):
-        raise ValueError("cpf inválido.")
-    return cpf
+        erros += [ValueError("cpf inválido.")]
+    return erros
 
 
-def valida_nome(nome, arg_name):
-    valida_arg_nao_nulo(nome, arg_name)
+def valida_nome(nome, arg_name) -> List[Exception]:
+    erros = []
+    erros += valida_arg_nao_nulo(nome, arg_name)
     if len(nome) < 2:
-        raise ValueError(f"{arg_name} deve possuir pelo menos 2 caracteres.")
-    return nome
+        erros += [ValueError(f"{arg_name} deve possuir pelo menos 2 caracteres.")]
+    return erros
 
 
-def valida_arg_nao_nulo(arg, arg_name):
+def valida_arg_nao_nulo(arg, arg_name) -> List[Exception]:
+    erros = []
     if not arg:
-        raise ValueError(f"{arg_name} não pode ser vazio.")
-    return arg
+        erros += [ValueError(f"{arg_name} não pode ser vazio.")]
+    return erros
 
 
-def valida_beneficiarios(beneficiarios):
+def valida_beneficiarios(beneficiarios) -> List[Exception]:
+    erros = []
     if not isinstance(beneficiarios, list):
-        raise ValueError("beneficiarios deve ser uma lista.")
+        erros += [ValueError("beneficiarios deve ser uma lista.")]
     if len(beneficiarios) > 10:
-        raise ValueError("beneficiarios deve ter no máximo 10 elementos.")
-    return beneficiarios
+        erros += [ValueError("beneficiarios deve ter no máximo 10 elementos.")]
+    return erros
 
 
-def valida_email(email):
-    valida_arg_nao_nulo(email, "email")
+def valida_email(email) -> List[Exception]:
+    erros = []
+    erros += valida_arg_nao_nulo(email, "email")
     if not match(EMAIL_FORMATO, email):
-        raise ValueError("email inválido.")
+        erros += [ValueError("email inválido.")]
+    return erros
 
 
-def valida_numero_susep(numero_susep):
-    valida_arg_nao_nulo(numero_susep, "numero_susep")
+def valida_numero_susep(numero_susep) -> List[Exception]:
+    erros = []
+    erros += valida_arg_nao_nulo(numero_susep, "numero_susep")
     if len(numero_susep) != 17:
-        raise ValueError("numero_susep deve possuir 17 caracteres.")
+        erros += [ValueError("numero_susep deve possuir 17 caracteres.")]
     if not match(NUMERO_SUSEP_FORMATO, numero_susep):
-        raise ValueError("numero_susep inválido.")
-    return numero_susep
+        erros += [ValueError("numero_susep inválido.")]
+    return erros
 
 
-def valida_positivo(valor, arg_name):
-    valida_arg_nao_nulo(valor, arg_name)
+def valida_positivo(valor, arg_name) -> List[Exception]:
+    erros = []
+    erros += valida_arg_nao_nulo(valor, arg_name)
     if valor <= 0:
-        raise ValueError(f"{arg_name} deve ser positivo.")
-    return valor
+        erros += [ValueError(f"{arg_name} deve ser positivo.")]
+    return erros
 
 
-def valida_vigencia(data_inicio, data_fim):
-    valida_arg_nao_nulo(data_inicio, "data_inicio")
-    valida_arg_nao_nulo(data_fim, "data_fim")
+def valida_vigencia(data_inicio, data_fim) -> List[Exception]:
+    erros = []
+    erros += valida_arg_nao_nulo(data_inicio, "data_inicio")
+    erros += valida_arg_nao_nulo(data_fim, "data_fim")
     if data_inicio > data_fim:
-        raise ValueError("data_inicio deve ser anterior a data_fim.")
-    return data_inicio, data_fim
+        erros += [ValueError("data_inicio deve ser anterior a data_fim.")]
+    return erros
 
 
-def valida_maioridade(data_nascimento, data_inicio):
+def valida_maioridade(data_nascimento, data_inicio) -> List[Exception]:
+    erros = []
     if calcula_idade_anos(data_nascimento, data_inicio) <= 18:
-        raise ValueError("Segurado não pode ser menor de idade.")
+        erros += [ValueError("Segurado não pode ser menor de idade.")]
+    return erros

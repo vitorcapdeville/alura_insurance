@@ -20,6 +20,8 @@ class Corretor(Pessoa):
         numero_susep,
         apolices: List[Apolice],
     ):
+        self._numero_susep = valida_numero_susep(numero_susep)
+        self._apolices = apolices
         super().__init__(
             primeiro_nome,
             sobrenome,
@@ -29,8 +31,11 @@ class Corretor(Pessoa):
             None,
             contato,
         )
-        self._numero_susep = valida_numero_susep(numero_susep)
-        self._apolices = apolices
+
+    def _pega_erros(self):
+        erros = super()._pega_erros()
+        erros += valida_numero_susep(self._numero_susep)
+        return erros
 
     @classmethod
     def from_dict(cls, data: dict):

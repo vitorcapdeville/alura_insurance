@@ -33,12 +33,14 @@ class Apolice:
     ):
         self._numero = numero
         self._tipo = tipo
-        self._valor_beneficio = valida_positivo(valor_beneficio, "valor_beneficio")
-        self._valor_premio = valida_positivo(valor_premio, "valor_premio")
+        self._valor_beneficio = valor_beneficio
+        self._valor_premio = valor_premio
         self._segurado = None
         self._corretor = None
-        self._data_inicio_vigencia, self._data_fim_vigencia = valida_vigencia(data_inicio_vigencia, data_fim_vigencia)
+        self._data_inicio_vigencia = data_inicio_vigencia
+        self._data_fim_vigencia = data_fim_vigencia
         self._status = status
+        self._valida()
 
     @classmethod
     def from_dict(cls, data):
@@ -75,3 +77,15 @@ class Apolice:
     @property
     def valor_beneficio(self):
         return self._valor_beneficio
+
+    def _pega_erros(self):
+        erros = []
+        erros += valida_positivo(self._valor_beneficio, "valor_beneficio")
+        erros += valida_positivo(self._valor_premio, "valor_premio")
+        erros += valida_vigencia(self._data_inicio_vigencia, self._data_fim_vigencia)
+        return erros
+
+    def _valida(self):
+        erros = self._pega_erros()
+        if len(erros) > 0:
+            raise Exception(erros)

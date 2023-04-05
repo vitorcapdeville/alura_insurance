@@ -8,10 +8,22 @@ class Contato:
     def __init__(
         self, celular: str, telefone_residencial: Optional[str], telefone_comercial: Optional[str], email: str
     ):
-        self._celular = valida_arg_nao_nulo(celular, "celular")
+        self._celular = celular
         self._telefone_residencial = telefone_residencial
         self._telefone_comercial = telefone_comercial
-        self._email = valida_email(email)
+        self._email = email
+        self._valida()
+
+    def _pega_erros(self):
+        erros = []
+        erros += valida_arg_nao_nulo(self._celular, "celular")
+        erros += valida_email(self._email)
+        return erros
+
+    def _valida(self):
+        erros = self._pega_erros()
+        if len(erros) > 0:
+            raise Exception(erros)
 
     @classmethod
     def from_dict(cls, data):

@@ -44,12 +44,26 @@ class Endereco:
         estado: Estado,
         cidade: str
     ) -> None:
-        self._rua: str = valida_arg_nao_nulo(rua.title(), "rua")
-        self._numero: str = valida_arg_nao_nulo(numero, "numero")
+        self._rua: str = rua.title()
+        self._numero: str = numero
         self._complemento: Optional[str] = complemento
-        self._cep: str = valida_arg_nao_nulo(cep, "cep")
+        self._cep: str = cep
         self._estado: Estado = estado
-        self._cidade: str = valida_arg_nao_nulo(cidade.title(), "cidade")
+        self._cidade: str = cidade.title()
+        self._valida()
+
+    def _pega_erros(self) -> list:
+        erros = []
+        erros += valida_arg_nao_nulo(self._rua, "rua")
+        erros += valida_arg_nao_nulo(self._numero, "numero")
+        erros += valida_arg_nao_nulo(self._cep, "cep")
+        erros += valida_arg_nao_nulo(self._cidade, "cidade")
+        return erros
+
+    def _valida(self):
+        erros = self._pega_erros()
+        if len(erros) > 0:
+            raise Exception(erros)
 
     @classmethod
     def from_dict(cls, data):
