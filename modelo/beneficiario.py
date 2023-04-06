@@ -8,9 +8,9 @@ from modelo.pessoa import Pessoa
 
 
 class TipoBeneficiario(Enum):
-    PARENTE = 1
-    AMIGO = 2
-    OUTROS = 3
+    PARENTE = "PARENTE"
+    AMIGO = "AMIGO"
+    OUTROS = "OUTROS"
 
 
 class Beneficiario(Pessoa):
@@ -46,9 +46,9 @@ class Beneficiario(Pessoa):
             TipoBeneficiario(data.get("tipo")),
         )
 
-    def __str__(self):
+    def __str__(self) -> str:
         return super().__str__() + f", tipo: {self._tipo}"
 
     @property
-    def tipo(self):
+    def tipo(self) -> TipoBeneficiario:
         return self._tipo

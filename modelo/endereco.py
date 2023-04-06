@@ -62,7 +62,7 @@ class Endereco(ComponenteSeguro):
         return erros
 
     @classmethod
-    def from_dict(cls, data):
+    def from_dict(cls, data: dict):
         return cls(
             data.get("rua"),
             data.get("numero"),

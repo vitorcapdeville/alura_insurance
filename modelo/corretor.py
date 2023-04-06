@@ -32,7 +32,7 @@ class Corretor(Pessoa):
             contato,
         )
 
-    def _pega_erros(self):
+    def _pega_erros(self) -> list:
         erros = super()._pega_erros()
         erros += valida_numero_susep(self._numero_susep)
         return erros
@@ -51,8 +51,8 @@ class Corretor(Pessoa):
             [Apolice.from_dict(apolice) for apolice in data.get("apolices")],
         )
 
-    def __str__(self):
+    def __str__(self) -> str:
         return super().__str__() + f", comissao_total: {self.comissao_total():,.2f}"
 
-    def comissao_total(self):
+    def comissao_total(self) -> float:
         return CalculadoraComissao(self._apolices).calcula()

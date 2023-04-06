@@ -15,14 +15,14 @@ class Contato(ComponenteSeguro):
         self._email = email
         self._valida()
 
-    def _pega_erros(self):
+    def _pega_erros(self) -> list:
         erros = []
         erros += valida_arg_nao_nulo(self._celular, "celular")
         erros += valida_email(self._email)
         return erros
 
     @classmethod
-    def from_dict(cls, data):
+    def from_dict(cls, data: dict):
         return cls(
             data.get("celular"),
             data.get("telefone_residencial"),
@@ -30,7 +30,7 @@ class Contato(ComponenteSeguro):
             data.get("email"),
         )
 
-    def __str__(self):
+    def __str__(self) -> str:
         return (
             f"celular: {self._celular}, telefone_residencial: {self._telefone_residencial}, telefone_comercial: "
             f"{self._telefone_comercial}, email: {self._email}"

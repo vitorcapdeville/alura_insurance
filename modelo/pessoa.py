@@ -30,7 +30,7 @@ class Pessoa(ComponenteSeguro):
         self._contato = contato
         self._valida()
 
-    def _pega_erros(self):
+    def _pega_erros(self) -> list:
         erros = []
         erros += valida_nome(self._primeiro_nome, "primeiro_nome")
         erros += valida_nome(self._sobrenome, "sobrenome")
@@ -38,13 +38,13 @@ class Pessoa(ComponenteSeguro):
         erros += valida_arg_nao_nulo(self._rg, "rg")
         return erros
 
-    def __str__(self):
+    def __str__(self) -> str:
         return (
             f"nome_completo: {self.nome_completo()}, data_nascimento:"
             f" {self._data_nascimento.strftime('%d/%m/%Y')}, classe: {self.__class__.__name__}"
         )
 
-    def nome_completo(self):
+    def nome_completo(self) -> str:
         return f"{self._primeiro_nome} {self._sobrenome}"
 
     @classmethod

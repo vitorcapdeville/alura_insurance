@@ -10,7 +10,7 @@ EMAIL_FORMATO = "[^@]+@[^@]+[.][^@]+"
 NUMERO_SUSEP_FORMATO = "^154146[0-9]{11}"
 
 
-def calcula_idade_anos(data_nascimento, data_calculo):
+def calcula_idade_anos(data_nascimento: date, data_calculo: date) -> int:
     return relativedelta(data_calculo, data_nascimento).years
 
 

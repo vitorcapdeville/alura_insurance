@@ -8,17 +8,17 @@ from validadores import valida_vigencia
 
 
 class TipoApolice(Enum):
-    VIDA = 1
-    CARRO = 2
-    CASA = 3
-    VIAGEM = 4
+    VIDA = "VIDA"
+    CARRO = "CARRO"
+    CASA = "CASA"
+    VIAGEM = "VIAGEM"
 
 
 class StatusApolice(Enum):
-    ATIVA = 1
-    LIQUIDADA = 2
-    CANCELADA = 3
-    EM_SINISTRO = 4
+    ATIVA = "ATIVA"
+    LIQUIDADA = "LIQUIDADA"
+    CANCELADA = "CANCELADA"
+    EM_SINISTRO = "EM_SINISTRO"
 
 
 class Apolice(ComponenteSeguro):
@@ -44,7 +44,7 @@ class Apolice(ComponenteSeguro):
         self._valida()
 
     @classmethod
-    def from_dict(cls, data):
+    def from_dict(cls, data: dict):
         return cls(
             UUID(data.get("numero")),
             TipoApolice(data.get("tipo")),
@@ -55,7 +55,7 @@ class Apolice(ComponenteSeguro):
             StatusApolice(data.get("status")),
         )
 
-    def __str__(self):
+    def __str__(self) -> str:
         return (
             f"numero: {self._numero}, tipo: {self._tipo}, status: {self._status}, "
             f"inicio: {self._data_inicio_vigencia.strftime('%d/%m/%Y')}, "
@@ -64,22 +64,22 @@ class Apolice(ComponenteSeguro):
         )
 
     @property
-    def data_inicio_vigencia(self):
+    def data_inicio_vigencia(self) -> date:
         return self._data_inicio_vigencia
 
     @property
-    def tipo(self):
+    def tipo(self) -> TipoApolice:
         return self._tipo
 
     @property
-    def valor_premio(self):
+    def valor_premio(self) -> float:
         return self._valor_premio
 
     @property
-    def valor_beneficio(self):
+    def valor_beneficio(self) -> float:
         return self._valor_beneficio
 
-    def _pega_erros(self):
+    def _pega_erros(self) -> list:
         erros = []
         erros += valida_positivo(self._valor_beneficio, "valor_beneficio")
         erros += valida_positivo(self._valor_premio, "valor_premio")

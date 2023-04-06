@@ -32,7 +32,7 @@ class Segurado(Pessoa):
             primeiro_nome, sobrenome, data_nascimento, cpf, rg, endereco, contato
         )
 
-    def _pega_erros(self):
+    def _pega_erros(self) -> list:
         erros = super()._pega_erros()
         erros += valida_beneficiarios(self._beneficiarios)
         erros += valida_arg_nao_nulo(self._apolices, "apolices")
@@ -56,8 +56,8 @@ class Segurado(Pessoa):
             [Apolice.from_dict(apolice) for apolice in data.get("apolices")],
         )
 
-    def __str__(self):
+    def __str__(self) -> str:
         return super().__str__() + f", beneficio_total: {self.beneficio_total():,.2f}"
 
-    def beneficio_total(self):
+    def beneficio_total(self) -> float:
         return sum([apolice.valor_beneficio for apolice in self._apolices])
