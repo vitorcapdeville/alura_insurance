@@ -1,8 +1,8 @@
 from typing import Optional
 
-from modelo.componente_seguro import ComponenteSeguro
-from validadores import valida_arg_nao_nulo
-from validadores import valida_email
+from src.modelo.componente_seguro import ComponenteSeguro
+from src.validadores import valida_arg_nao_nulo
+from src.validadores import valida_email
 
 
 class Contato(ComponenteSeguro):

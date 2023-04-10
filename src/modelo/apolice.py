@@ -2,9 +2,9 @@ from datetime import date
 from enum import Enum
 from uuid import UUID
 
-from modelo.componente_seguro import ComponenteSeguro
-from validadores import valida_positivo
-from validadores import valida_vigencia
+from src.modelo.componente_seguro import ComponenteSeguro
+from src.validadores import valida_positivo
+from src.validadores import valida_vigencia
 
 
 class TipoApolice(Enum):

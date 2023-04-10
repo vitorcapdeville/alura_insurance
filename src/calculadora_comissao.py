@@ -1,7 +1,7 @@
 from typing import List
 
-from modelo.apolice import Apolice
-from modelo.apolice import TipoApolice
+from src.modelo.apolice import Apolice
+from src.modelo.apolice import TipoApolice
 
 
 def _calcula_comissao_vida(apolice: Apolice) -> float:

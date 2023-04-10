@@ -1,15 +1,15 @@
 from datetime import date
 from typing import List
 
-from modelo.apolice import Apolice
-from modelo.beneficiario import Beneficiario
-from construtores import separa_nome_sobrenome
-from modelo.contato import Contato
-from modelo.endereco import Endereco
-from modelo.pessoa import Pessoa
-from validadores import valida_arg_nao_nulo
-from validadores import valida_beneficiarios
-from validadores import valida_maioridade
+from src.modelo.apolice import Apolice
+from src.modelo.beneficiario import Beneficiario
+from src.construtores import separa_nome_sobrenome
+from src.modelo.contato import Contato
+from src.modelo.endereco import Endereco
+from src.modelo.pessoa import Pessoa
+from src.validadores import valida_arg_nao_nulo
+from src.validadores import valida_beneficiarios
+from src.validadores import valida_maioridade
 
 
 class Segurado(Pessoa):
@@ -27,7 +27,7 @@ class Segurado(Pessoa):
     ) -> None:
         self._beneficiarios = beneficiarios
         self._apolices = apolices
-        self._data_ingresso = min([apolice.data_inicio_vigencia for apolice in apolices])
+        self._data_ingresso = min([apolice.data_inicio_vigencia for apolice in apolices] or [date.today()])
         super().__init__(
             primeiro_nome, sobrenome, data_nascimento, cpf, rg, endereco, contato
         )

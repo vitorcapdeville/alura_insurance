@@ -1,8 +1,8 @@
 from enum import Enum
 from typing import Optional
 
-from modelo.componente_seguro import ComponenteSeguro
-from validadores import valida_arg_nao_nulo
+from src.modelo.componente_seguro import ComponenteSeguro
+from src.validadores import valida_arg_nao_nulo
 
 
 class Estado(Enum):

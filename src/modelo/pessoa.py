@@ -1,13 +1,13 @@
 from datetime import date
 from typing import Optional
 
-from construtores import separa_nome_sobrenome
-from modelo.componente_seguro import ComponenteSeguro
-from modelo.contato import Contato
-from modelo.endereco import Endereco
-from validadores import valida_arg_nao_nulo
-from validadores import valida_cpf
-from validadores import valida_nome
+from src.construtores import separa_nome_sobrenome
+from src.modelo.componente_seguro import ComponenteSeguro
+from src.modelo.contato import Contato
+from src.modelo.endereco import Endereco
+from src.validadores import valida_arg_nao_nulo
+from src.validadores import valida_cpf
+from src.validadores import valida_nome
 
 
 class Pessoa(ComponenteSeguro):

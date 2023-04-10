@@ -5,9 +5,9 @@ from typing import List
 
 from dateutil.relativedelta import relativedelta
 
-CPF_FORMATO = "[0-9]{3}[.][0-9]{3}[.][0-9]{3}[-][0-9]{2}"
-EMAIL_FORMATO = "[^@]+@[^@]+[.][^@]+"
-NUMERO_SUSEP_FORMATO = "^154146[0-9]{11}"
+CPF_FORMATO = "^[0-9]{3}[.][0-9]{3}[.][0-9]{3}[-][0-9]{2}$"
+EMAIL_FORMATO = "^[^@]+@[^@]+[.][^@]+$"
+NUMERO_SUSEP_FORMATO = "^154146[0-9]{11}$"
 
 
 def calcula_idade_anos(data_nascimento: date, data_calculo: date) -> int:
@@ -17,7 +17,7 @@ def calcula_idade_anos(data_nascimento: date, data_calculo: date) -> int:
 def valida_cpf(cpf: str) -> List[Exception]:
     erros = []
     erros += valida_arg_nao_nulo(cpf, "cpf")
-    if not match(CPF_FORMATO, cpf):
+    if not match(CPF_FORMATO, cpf or ""):
         erros += [ValueError("cpf inválido.")]
     return erros
 

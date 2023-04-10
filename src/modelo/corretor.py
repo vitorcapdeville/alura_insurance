@@ -1,12 +1,12 @@
 from datetime import datetime
 from typing import List
 
-from calculadora_comissao import CalculadoraComissao
-from construtores import separa_nome_sobrenome
-from modelo.apolice import Apolice
-from modelo.contato import Contato
-from modelo.pessoa import Pessoa
-from validadores import valida_numero_susep
+from src.calculadora_comissao import CalculadoraComissao
+from src.construtores import separa_nome_sobrenome
+from src.modelo.apolice import Apolice
+from src.modelo.contato import Contato
+from src.modelo.pessoa import Pessoa
+from src.validadores import valida_numero_susep
 
 
 class Corretor(Pessoa):

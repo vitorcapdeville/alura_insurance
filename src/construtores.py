@@ -1,6 +1,6 @@
 from json import load
 
-from modelo.componente_seguro import ComponenteSeguro
+from src.modelo.componente_seguro import ComponenteSeguro
 
 
 class LerArquivo:
