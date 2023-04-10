@@ -14,3 +14,9 @@ O projeto **Comex** é um sistema de _e-commerce_ _marketplace_. Seu objetivo é
 
 - Vitor Capdeville
 - vgcapdeville@hotmail.com
+
+## Testes
+
+```commandline
+ pytest src tests --cov=src --cov-report=xml --cov-config=tox.ini --cov-branch
+```
