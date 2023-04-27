@@ -43,18 +43,6 @@ class Apolice(ComponenteSeguro):
         self._status = status
         self._valida()
 
-    @classmethod
-    def from_dict(cls, data: dict):
-        return cls(
-            UUID(data.get("numero")),
-            TipoApolice(data.get("tipo")),
-            data.get("valor_beneficio"),
-            data.get("valor_premio"),
-            date.fromisoformat(data.get("data_inicio_vigencia")),
-            date.fromisoformat(data.get("data_fim_vigencia")),
-            StatusApolice(data.get("status")),
-        )
-
     def __str__(self) -> str:
         return (
             f"numero: {self._numero}, tipo: {self._tipo}, status: {self._status}, "

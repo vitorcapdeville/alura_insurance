@@ -1,10 +1,11 @@
 from unittest.mock import Mock
 
 import src.modelo.corretor as modulo_corretor
+from src.conversores import CorretorConversor
 from src.modelo.corretor import Corretor
 
 
-def test_corretor_from_dict():
+def test_corretor_conversor():
     data = {
         "nome": "Monteiro Lobato",
         "numero_susep": "15414685940386723",
@@ -18,7 +19,7 @@ def test_corretor_from_dict():
             "email": "corretor@alura.com.br"
         }
     }
-    corretor = Corretor.from_dict(data)
+    corretor = CorretorConversor(data)()
     assert isinstance(corretor, Corretor)
 
 

@@ -3,8 +3,7 @@ from unittest.mock import mock_open
 from unittest.mock import patch
 
 from src.construtores import LerArquivo
-from src.construtores import criar_classe
-from src.modelo.apolice import Apolice
+from src.conversores import ApoliceConversor
 
 
 def test_ler_arquivo_retorna_dicionario_corretamente():
@@ -28,6 +27,7 @@ def test_classe_eh_criada_corretamente_a_partir_de_json():
     }
     """
     with patch("builtins.open", mock_open(read_data=conteudo_arquivo)):
-        apolice = criar_classe(Apolice, "arquivo.json")
+        dados = LerArquivo("arquivo.json").ler()
+        apolice = ApoliceConversor(dados)()
         assert apolice.data_inicio_vigencia == date(2019, 1, 1)
         assert apolice.valor_beneficio == 100000

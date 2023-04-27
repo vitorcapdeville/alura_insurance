@@ -15,29 +15,6 @@ def test_str():
     assert str(pessoa) == "nome_completo: João Silva, data_nascimento: 01/01/2000, classe: Pessoa"
 
 
-def test_from_dict():
-    data = {
-        "nome": "João Silva",
-        "data_nascimento": "2000-01-01",
-        "cpf": "123.456.789-01",
-        "rg": "123456789",
-        "endereco": {
-            "rua": "Rua das Flores",
-            "numero": "123",
-            "bairro": "Centro",
-            "cidade": "São Paulo",
-            "estado": "SP",
-            "cep": "12345-678"
-        },
-        "contato": {
-            "celular": "11987654321",
-            "email": "joaosilva@provedor.com",
-        }
-    }
-    pessoa = Pessoa.from_dict(data)
-    assert isinstance(pessoa, Pessoa)
-
-
 def test_nome_sobrenome_nao_pode_ser_vazio():
     with pytest.raises(Exception):
         Pessoa("", "Silva", date(2000, 1, 1), "123.456.789-01", "123456789", None, None)

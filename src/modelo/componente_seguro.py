@@ -3,10 +3,6 @@ from abc import abstractmethod
 
 
 class ComponenteSeguro(ABC):
-    @classmethod
-    @abstractmethod
-    def from_dict(cls, data: dict):
-        raise NotImplementedError
 
     @abstractmethod
     def _pega_erros(self) -> list:

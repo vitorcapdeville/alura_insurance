@@ -1,7 +1,6 @@
 from datetime import date
 from typing import Optional
 
-from src.construtores import separa_nome_sobrenome
 from src.modelo.componente_seguro import ComponenteSeguro
 from src.modelo.contato import Contato
 from src.modelo.endereco import Endereco
@@ -46,18 +45,3 @@ class Pessoa(ComponenteSeguro):
 
     def nome_completo(self) -> str:
         return f"{self._primeiro_nome} {self._sobrenome}"
-
-    @classmethod
-    def from_dict(cls, data: dict):
-        primeiro_nome, sobrenome = separa_nome_sobrenome(data.get("nome"))
-        endereco = Endereco.from_dict(data["endereco"])
-        contato = Contato.from_dict(data["contato"])
-        return cls(
-            primeiro_nome,
-            sobrenome,
-            date.fromisoformat(data.get("data_nascimento")),
-            data.get("cpf"),
-            data.get("rg"),
-            endereco,
-            contato,
-        )

@@ -3,6 +3,7 @@ from uuid import UUID
 
 import pytest
 
+from src.conversores import SeguradoConversor
 from src.modelo.apolice import Apolice
 from src.modelo.apolice import StatusApolice
 from src.modelo.apolice import TipoApolice
@@ -44,7 +45,7 @@ apolices = [
 ]
 
 
-def test_segurado_from_dict():
+def test_segurado_conversor():
     data = {
         "nome": "João da Silva",
         "data_nascimento": "1990-01-01",
@@ -97,7 +98,7 @@ def test_segurado_from_dict():
             },
         ],
     }
-    segurado = Segurado.from_dict(data)
+    segurado = SeguradoConversor(data)()
     assert isinstance(segurado, Segurado)
 
 

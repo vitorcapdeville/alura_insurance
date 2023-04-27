@@ -3,7 +3,6 @@ from typing import List
 
 from src.modelo.apolice import Apolice
 from src.modelo.beneficiario import Beneficiario
-from src.construtores import separa_nome_sobrenome
 from src.modelo.contato import Contato
 from src.modelo.endereco import Endereco
 from src.modelo.pessoa import Pessoa
@@ -38,23 +37,6 @@ class Segurado(Pessoa):
         erros += valida_arg_nao_nulo(self._apolices, "apolices")
         erros += valida_maioridade(self._data_nascimento, self._data_ingresso)
         return erros
-
-    @classmethod
-    def from_dict(cls, data: dict):
-        primeiro_nome, sobrenome = separa_nome_sobrenome(data.get("nome"))
-        endereco = Endereco.from_dict(data["endereco"])
-        contato = Contato.from_dict(data["contato"])
-        return cls(
-            primeiro_nome,
-            sobrenome,
-            date.fromisoformat(data.get("data_nascimento")),
-            data.get("cpf"),
-            data.get("rg"),
-            endereco,
-            contato,
-            [Beneficiario.from_dict(beneficiario) for beneficiario in data.get("beneficiarios")],
-            [Apolice.from_dict(apolice) for apolice in data.get("apolices")],
-        )
 
     def __str__(self) -> str:
         return super().__str__() + f", beneficio_total: {self.beneficio_total():,.2f}"

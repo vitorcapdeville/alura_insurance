@@ -2,7 +2,6 @@ from datetime import datetime
 from typing import List
 
 from src.calculadora_comissao import CalculadoraComissao
-from src.construtores import separa_nome_sobrenome
 from src.modelo.apolice import Apolice
 from src.modelo.contato import Contato
 from src.modelo.pessoa import Pessoa
@@ -36,20 +35,6 @@ class Corretor(Pessoa):
         erros = super()._pega_erros()
         erros += valida_numero_susep(self._numero_susep)
         return erros
-
-    @classmethod
-    def from_dict(cls, data: dict):
-        primeiro_nome, sobrenome = separa_nome_sobrenome(data.get("nome"))
-        contato = Contato.from_dict(data["contato"])
-        return cls(
-            primeiro_nome,
-            sobrenome,
-            data.get("cpf"),
-            data.get("rg"),
-            contato,
-            data.get("numero_susep"),
-            [Apolice.from_dict(apolice) for apolice in data.get("apolices")],
-        )
 
     def __str__(self) -> str:
         return super().__str__() + f", comissao_total: {self.comissao_total():,.2f}"
