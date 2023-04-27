@@ -1,43 +1,23 @@
-from datetime import datetime
 from typing import List
+
+from pydantic import validator
 
 from src.calculadora_comissao import CalculadoraComissao
 from src.modelo.apolice import Apolice
-from src.modelo.contato import Contato
 from src.modelo.pessoa import Pessoa
 from src.validadores import valida_numero_susep
 
 
 class Corretor(Pessoa):
-    def __init__(
-        self,
-        primeiro_nome: str,
-        sobrenome: str,
-        cpf: str,
-        rg: str,
-        contato: Contato,
-        numero_susep,
-        apolices: List[Apolice],
-    ):
-        self._numero_susep = numero_susep
-        self._apolices = apolices
-        super().__init__(
-            primeiro_nome,
-            sobrenome,
-            datetime.fromisoformat("9999-12-01"),
-            cpf,
-            rg,
-            None,
-            contato,
-        )
+    numero_susep: str
+    apolices: List[Apolice]
 
-    def _pega_erros(self) -> list:
-        erros = super()._pega_erros()
-        erros += valida_numero_susep(self._numero_susep)
-        return erros
-
-    def __str__(self) -> str:
-        return super().__str__() + f", comissao_total: {self.comissao_total():,.2f}"
+    @validator("numero_susep")
+    def verifica_numero_susep(cls, numero_susep: str) -> str:
+        erros = valida_numero_susep(numero_susep)
+        if len(erros) > 0:
+            raise ValueError(erros)
+        return numero_susep
 
     def comissao_total(self) -> float:
-        return CalculadoraComissao(self._apolices).calcula()
+        return CalculadoraComissao(self.apolices).calcula()

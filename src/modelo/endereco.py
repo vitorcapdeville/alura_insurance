@@ -1,7 +1,9 @@
 from enum import Enum
 from typing import Optional
 
-from src.modelo.componente_seguro import ComponenteSeguro
+from pydantic import BaseModel
+from pydantic import validator
+
 from src.validadores import valida_arg_nao_nulo
 
 
@@ -35,34 +37,17 @@ class Estado(Enum):
     TO = "TO"
 
 
-class Endereco(ComponenteSeguro):
-    def __init__(
-        self,
-        rua: str,
-        numero: str,
-        complemento: Optional[str],
-        cep: str,
-        estado: Estado,
-        cidade: str
-    ) -> None:
-        self._rua: str = rua.title()
-        self._numero: str = numero
-        self._complemento: Optional[str] = complemento
-        self._cep: str = cep
-        self._estado: Estado = estado
-        self._cidade: str = cidade.title()
-        self._valida()
+class Endereco(BaseModel):
+    rua: str
+    numero: str
+    complemento: Optional[str]
+    cep: str
+    estado: Estado
+    cidade: str
 
-    def _pega_erros(self) -> list:
-        erros = []
-        erros += valida_arg_nao_nulo(self._rua, "rua")
-        erros += valida_arg_nao_nulo(self._numero, "numero")
-        erros += valida_arg_nao_nulo(self._cep, "cep")
-        erros += valida_arg_nao_nulo(self._cidade, "cidade")
-        return erros
-
-    def __str__(self) -> str:
-        return (
-            f"{self._rua}, numero {self._numero}, {self._complemento}, "
-            f"{self._cidade}, {self._estado}"
-        )
+    @validator("rua", "numero", "cep", "cidade")
+    def verifica_rua(cls, arg: str) -> str:
+        erros = valida_arg_nao_nulo(arg, "arg")
+        if len(erros) > 0:
+            raise ValueError(erros)
+        return arg

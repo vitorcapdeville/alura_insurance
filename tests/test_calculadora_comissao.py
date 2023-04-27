@@ -9,7 +9,7 @@ from src.modelo.apolice import TipoApolice
 
 def test_calcula_comissao_vida():
     apolice = Apolice(
-        UUID('12345678123456781234567812345678'),
+        numero=UUID('12345678123456781234567812345678'),
         tipo=TipoApolice.VIDA,
         valor_beneficio=1000000,
         valor_premio=1000000,
@@ -22,7 +22,7 @@ def test_calcula_comissao_vida():
 
 def test_calcula_comissao_vida_premio_menor_850000():
     apolice = Apolice(
-        UUID('12345678123456781234567812345678'),
+        numero=UUID('12345678123456781234567812345678'),
         tipo=TipoApolice.VIDA,
         valor_beneficio=1000000,
         valor_premio=500000,
@@ -35,7 +35,7 @@ def test_calcula_comissao_vida_premio_menor_850000():
 
 def test_calcula_comissao_carro():
     apolice = Apolice(
-        UUID('12345678123456781234567812345678'),
+        numero=UUID('12345678123456781234567812345678'),
         tipo=TipoApolice.CARRO,
         valor_beneficio=1000000,
         valor_premio=1000000,
@@ -48,7 +48,7 @@ def test_calcula_comissao_carro():
 
 def test_calcula_comissao_casa():
     apolice = Apolice(
-        UUID('12345678123456781234567812345678'),
+        numero=UUID('12345678123456781234567812345678'),
         tipo=TipoApolice.CASA,
         valor_beneficio=1000000,
         valor_premio=1000000,
@@ -61,7 +61,7 @@ def test_calcula_comissao_casa():
 
 def test_calcula_comissao_viagem():
     apolice = Apolice(
-        UUID('12345678123456781234567812345678'),
+        numero=UUID('12345678123456781234567812345678'),
         tipo=TipoApolice.VIAGEM,
         valor_beneficio=1000000,
         valor_premio=1000000,

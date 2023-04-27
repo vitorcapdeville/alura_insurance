@@ -2,7 +2,10 @@ from datetime import date
 from enum import Enum
 from uuid import UUID
 
-from src.modelo.componente_seguro import ComponenteSeguro
+from pydantic import BaseModel
+from pydantic import root_validator
+from pydantic import validator
+
 from src.validadores import valida_positivo
 from src.validadores import valida_vigencia
 
@@ -21,55 +24,26 @@ class StatusApolice(Enum):
     EM_SINISTRO = "EM_SINISTRO"
 
 
-class Apolice(ComponenteSeguro):
-    def __init__(
-        self,
-        numero: UUID,
-        tipo: TipoApolice,
-        valor_beneficio: float,
-        valor_premio: float,
-        data_inicio_vigencia: date,
-        data_fim_vigencia: date,
-        status: StatusApolice,
-    ):
-        self._numero = numero
-        self._tipo = tipo
-        self._valor_beneficio = valor_beneficio
-        self._valor_premio = valor_premio
-        self._segurado = None
-        self._corretor = None
-        self._data_inicio_vigencia = data_inicio_vigencia
-        self._data_fim_vigencia = data_fim_vigencia
-        self._status = status
-        self._valida()
+class Apolice(BaseModel):
+    numero: UUID
+    tipo: TipoApolice
+    valor_beneficio: float
+    valor_premio: float
+    data_inicio_vigencia: date
+    data_fim_vigencia: date
+    status: StatusApolice
 
-    def __str__(self) -> str:
-        return (
-            f"numero: {self._numero}, tipo: {self._tipo}, status: {self._status}, "
-            f"inicio: {self._data_inicio_vigencia.strftime('%d/%m/%Y')}, "
-            f"fim: {self._data_fim_vigencia.strftime('%d/%m/%Y')}, "
-            f"valor_beneficio: {self._valor_premio:,.2f}"
-        )
+    @validator("valor_beneficio", "valor_premio")
+    def verifica_valor(cls, valor):
+        erros = valida_positivo(valor, "valor")
+        if len(erros) > 0:
+            raise ValueError(erros)
+        return valor
 
-    @property
-    def data_inicio_vigencia(self) -> date:
-        return self._data_inicio_vigencia
-
-    @property
-    def tipo(self) -> TipoApolice:
-        return self._tipo
-
-    @property
-    def valor_premio(self) -> float:
-        return self._valor_premio
-
-    @property
-    def valor_beneficio(self) -> float:
-        return self._valor_beneficio
-
-    def _pega_erros(self) -> list:
-        erros = []
-        erros += valida_positivo(self._valor_beneficio, "valor_beneficio")
-        erros += valida_positivo(self._valor_premio, "valor_premio")
-        erros += valida_vigencia(self._data_inicio_vigencia, self._data_fim_vigencia)
-        return erros
+    @root_validator
+    def verifica_vigencia(cls, values):
+        data_inicio, data_fim = values["data_inicio_vigencia"], values["data_fim_vigencia"]
+        erros = valida_vigencia(data_inicio, data_fim)
+        if len(erros) > 0:
+            raise ValueError(erros)
+        return values
